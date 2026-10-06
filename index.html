@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jarvis</title>
+
+    <style>
+        body {
+            background: black;
+            color: cyan;
+            text-align: center;
+            font-family: Arial;
+            padding-top: 60px;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: none;
+            background: cyan;
+            color: black;
+        }
+
+        #status {
+            margin-top: 25px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>⚡ Hey Jarvis</h1>
+
+    <p>Personal Voice Assistant</p>
+
+    <button onclick="startJarvis()">🎙️ Jarvis से बात करें</button>
+
+    <div id="status">Jarvis तैयार है...</div>
+
+    <script>
+        function startJarvis() {
+
+            const SpeechRecognition =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+            if (!SpeechRecognition) {
+                document.getElementById("status").innerText =
+                    "इस browser में voice recognition उपलब्ध नहीं है।";
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+
+            recognition.lang = "hi-IN";
+            recognition.continuous = false;
+
+            document.getElementById("status").innerText =
+                "🎙️ Jarvis सुन रहा है...";
+
+            recognition.start();
+
+            recognition.onresult = function(event) {
+
+                const command =
+                    event.results[0][0].transcript.toLowerCase();
+
+                document.getElementById("status").innerText =
+                    "आपने कहा: " + command;
+
+                if (
+                    command.includes("youtube") ||
+                    command.includes("यूट्यूब")
+                ) {
+                    speak("YouTube खोल रहा हूँ");
+
+                    setTimeout(function() {
+                        window.location.href =
+                            "https://www.youtube.com/";
+                    }, 1000);
+                }
+
+                else if (
+                    command.includes("google") ||
+                    command.includes("गूगल")
+                ) {
+                    speak("Google खोल रहा हूँ");
+
+                    setTimeout(function() {
+                        window.location.href =
+                            "https://www.google.com/";
+                    }, 1000);
+                }
+
+                else if (
+                    command.includes("समय") ||
+                    command.includes("time")
+                ) {
+                    const time =
+                        new Date().toLocaleTimeString(
+                            "hi-IN",
+                            {
+                                hour: "numeric",
+                                minute: "2-digit"
+                            }
+                        );
+
+                    speak("अभी समय है " + time);
+                }
+
+                else {
+                    speak(
+                        "मैंने आपकी बात सुनी, लेकिन यह command अभी मेरे अंदर नहीं जोड़ी गई है।"
+                    );
+                }
+            };
+
+            recognition.onerror = function() {
+                document.getElementById("status").innerText =
+                    "आवाज़ समझने में समस्या हुई।";
+            };
+        }
+
+        function speak(text) {
+
+            const voice =
+                new SpeechSynthesisUtterance(text);
+
+            voice.lang = "hi-IN";
+
+            speechSynthesis.speak(voice);
+        }
+    </script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+    <title>Jarvis</title>
+
+    <style>
+        body {
+            background: black;
+            color: cyan;
+            text-align: center;
+            font-family: Arial;
+            padding-top: 60px;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: none;
+            background: cyan;
+            color: black;
+        }
+
+        #status {
+            margin-top: 25px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>⚡ Hey Jarvis</h1>
+
+    <p>Personal Voice Assistant</p>
+
+    <button onclick="startJarvis()">🎙️ Jarvis से बात करें</button>
+
+    <div id="status">Jarvis तैयार है...</div>
+
+    <script>
+        function startJarvis() {
+
+            const SpeechRecognition =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+            if (!SpeechRecognition) {
+                document.getElementById("status").innerText =
+                    "इस browser में voice recognition उपलब्ध नहीं है।";
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+
+            recognition.lang = "hi-IN";
+            recognition.continuous = false;
+
+            document.getElementById("status").innerText =
+                "🎙️ Jarvis सुन रहा है...";
+
+            recognition.start();
+
+            recognition.onresult = function(event) {
+
+                const command =
+                    event.results[0][0].transcript.toLowerCase();
+
+                document.getElementById("status").innerText =
+                    "आपने कहा: " + command;
+
+                if (
+                    command.includes("youtube") ||
+                    command.includes("यूट्यूब")
+                ) {
+                    speak("YouTube खोल रहा हूँ");
+
+                    setTimeout(function() {
+                        window.location.href =
+                            "https://www.youtube.com/";
+                    }, 1000);
+                }
+
+                else if (
+                    command.includes("google") ||
+                    command.includes("गूगल")
+                ) {
+                    speak("Google खोल रहा हूँ");
+
+                    setTimeout(function() {
+                        window.location.href =
+                            "https://www.google.com/";
+                    }, 1000);
+                }
+
+                else if (
+                    command.includes("समय") ||
+                    command.includes("time")
+                ) {
+                    const time =
+                        new Date().toLocaleTimeString(
+                            "hi-IN",
+                            {
+                                hour: "numeric",
+                                minute: "2-digit"
+                            }
+                        );
+
+                    speak("अभी समय है " + time);
+                }
+
+                else {
+                    speak(
+                        "मैंने आपकी बात सुनी, लेकिन यह command अभी मेरे अंदर नहीं जोड़ी गई है।"
+                    );
+                }
+            };
+
+            recognition.onerror = function() {
+                document.getElementById("status").innerText =
+                    "आवाज़ समझने में समस्या हुई।";
+            };
+        }
+
+        function speak(text) {
+
+            const voice =
+                new SpeechSynthesisUtterance(text);
+
+            voice.lang = "hi-IN";
+
+            speechSynthesis.speak(voice);
+        }
+    </script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+    <title>Jarvis</title>
+
+    <style>
+        body {
+            background: black;
+            color: cyan;
+            text-align: center;
+            font-family: Arial;
+            padding-top: 60px;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: none;
+            background: cyan;
+            color: black;
+        }
+
+        #status {
+            margin-top: 25px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>⚡ Hey Jarvis</h1>
+
+    <p>Personal Voice Assistant</p>
+
+    <button onclick="startJarvis()">🎙️ Jarvis से बात करें</button>
+
+    <div id="status">Jarvis तैयार है...</div>
+
+    <script>
+        function startJarvis() {
+
+            const SpeechRecognition =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+            if (!SpeechRecognition) {
+                document.getElementById("status").innerText =
+                    "इस browser में voice recognition उपलब्ध नहीं है।";
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+
+            recognition.lang = "hi-IN";
+            recognition.continuous = false;
+
+            document.getElementById("status").innerText =
+                "🎙️ Jarvis सुन रहा है...";
+
+            recognition.start();
+
+            recognition.onresult = function(event) {
+
+                const command =
+                    event.results[0][0].transcript.toLowerCase();
+
+                document.getElementById("status").innerText =
+                    "आपने कहा: " + command;
+
+                if (
+                    command.includes("youtube") ||
+                    command.includes("यूट्यूब")
+                ) {
+                    speak("YouTube खोल रहा हूँ");
+
+                    setTimeout(function() {
+                        window.location.href =
+                            "https://www.youtube.com/";
+                    }, 1000);
+                }
+
+                else if (
+                    command.includes("google") ||
+                    command.includes("गूगल")
+                ) {
+                    speak("Google खोल रहा हूँ");
+
+                    setTimeout(function() {
+                        window.location.href =
+                            "https://www.google.com/";
+                    }, 1000);
+                }
+
+                else if (
+                    command.includes("समय") ||
+                    command.includes("time")
+                ) {
+                    const time =
+                        new Date().toLocaleTimeString(
+                            "hi-IN",
+                            {
+                                hour: "numeric",
+                                minute: "2-digit"
+                            }
+                        );
+
+                    speak("अभी समय है " + time);
+                }
+
+                else {
+                    speak(
+                        "मैंने आपकी बात सुनी, लेकिन यह command अभी मेरे अंदर नहीं जोड़ी गई है।"
+                    );
+                }
+            };
+
+            recognition.onerror = function() {
+                document.getElementById("status").innerText =
+                    "आवाज़ समझने में समस्या हुई।";
+            };
+        }
+
+        function speak(text) {
+
+            const voice =
+                new SpeechSynthesisUtterance(text);
+
+            voice.lang = "hi-IN";
+
+            speechSynthesis.speak(voice);
+        }
+    </script>
+
+</body>
+</html>
